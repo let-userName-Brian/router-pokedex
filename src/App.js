@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react'
 
@@ -6,25 +5,35 @@ const url = 'https://pokeapi.co/api/v2/pokemon-form/'
 
 function App() {
 
-  const [pokemon, setPokemon] = useState([])
+  const [pokemonData, setPokemonData] = useState()
 
   async function fetchPokemon(){
+    let pokeArray = [];
     for(let i = 1; i <= 10; i++){
       let response = await fetch(`${url}${i}`)
       let data = await response.json()
-      let newPokemon = data.name
-      setPokemon((current) => {return (...current, newPokemon)})
-      //come back to this in the am
-      console.log(newPokemon)
+      let newPokemon = data
+      pokeArray.push(newPokemon)
+      setPokemonData(pokeArray)
+        //fixed it the dummy way
+      //picture
+      console.log(newPokemon.sprites.back_default)
+      //name
+      console.log(newPokemon.name)
+      //number
+      console.log(newPokemon.order)
+      //type
+      console.log(newPokemon.types[0].type.name)
   }
 }
+
   useEffect(() => {
     fetchPokemon()
-  }, [pokemon])
+  }, [])
+
 
   return (
     <div className="App">
-
       
     </div>
   );
