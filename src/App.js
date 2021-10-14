@@ -16,6 +16,7 @@ function App() {
       pokeArray.push(newPokemon)
       setPokemonData(pokeArray)
         //fixed it the dummy way
+      console.log(pokeArray)
       //picture
       console.log(newPokemon.sprites.back_default)
       //name
