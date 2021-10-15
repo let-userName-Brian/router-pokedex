@@ -1,21 +1,15 @@
-import React, { useState } from 'react'
-// import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom';
-
+import { useParams, Link, Route } from 'react-router-dom';
+import Favorites from "./Favorites";
+import { FavorietesContext } from "./FavoritesContext";
 
 
 export default function IndividualPokemon({details}) {
 
-    const [pokeFacts, updateFacts] = useState(fact: [])
     let { pokemonName } = useParams();
 
     console.log('Details', details)
-    console.log('PokeFact', pokeFacts)
+    let newPokeFact = {};
     
-    if(details === undefined){
-       console.log('idiot')
-    } else if (details.length) {
-        let newPokeFact = {};
     for(let i = 0; i < details.length; i++){
         if(details[i].name === pokemonName){
             console.log(details[i].types[0].type.name)
@@ -23,37 +17,45 @@ export default function IndividualPokemon({details}) {
             newPokeFact.weight = details[i].weight;
             newPokeFact.types = [];
             for(let j = 0; j < details[i].types.length; j++){
-                newPokeFact.types.push(details[i].types[j].type.name);
+                if (j === details[i].types.length - 1){
+                    newPokeFact.types.push(details[i].types[j].type.name);
+                } else {
+                    newPokeFact.types.push(details[i].types[j].type.name + ", ");
+                }
             }
             newPokeFact.moves = [];
             for(let k = 0; k < details[i].moves.length; k++){
-                newPokeFact.types.push(details[i].moves[k].move.name);
+                if (k === details[i].moves.length - 1){
+                    newPokeFact.moves.push(details[i].moves[k].move.name);
+                } else {
+                    newPokeFact.moves.push(details[i].moves[k].move.name + ", ");
+                }
             }
             newPokeFact.img = details[i].sprites.front_default;
-            // console.log(newPokeFact)
         }
     }
-    updateFacts({fact: newPokeFact});
-    }
+    // updateFacts((current) => {return {...current, newPokeFact}});
 
-
+    //NICE!
 
     return (
         <div>
-            <h2>Hey you chose {pokemonName}</h2>
-            {/* <img src={pokeFacts.img} />
-            <p>Height:{pokeFacts.height}</p>
-            <p>Weight:{pokeFacts.weight}</p>
-            <p>Type:{pokeFacts.types}</p>
-            <p>Moves:{pokeFacts.moves}</p> */}
+            <h2>I choose you {pokemonName}!</h2>
+            <img src={newPokeFact.img} />
+            <p>Height: {newPokeFact.height} inches</p>
+            <p>Weight: {newPokeFact.weight} lbs</p>
+            <p>Type: {newPokeFact.types}</p>
+            <p>All my moves are: {newPokeFact.moves}</p>
+            <Link exact to="/favorites">Add to Favorites</Link>
+            <Route path='/favorites'> 
+                <Favorites favePokemon={pokemonName} pokeImg={newPokeFact.img}/>
+            </Route>
         </div>
     )
 }
 
-
 //details[i].sprites.front_default
 //details[i].types[0].type.name
-
 
 //pass down the details state to the child
 //access state in child and pass the params to the 
@@ -61,49 +63,24 @@ export default function IndividualPokemon({details}) {
 //set state in child to whatever is being displayed 
 
 
+
+
 /*
-//list of all products
-function Products() {
-  let match = useRouteMatch();
+import LoadingButton from '@mui/lab/LoadingButton';
+import Box from '@mui/material/Box';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
+import SaveIcon from '@mui/icons-material/Save';
+import SendIcon from '@mui/icons-material/Send';
 
-  return (
-    <div>
-      <h2>Products for Engineers</h2>
-
-      <ul>
-        <li>
-          <Link to={`${match.url}/Rubber-Ducky`}>{results.name}</Link>
-        </li>
-        <li>
-          <Link to={`${match.url}/Tylenol`}>
-            Tylenol 
-          </Link>
-        </li>
-        <li>
-          <Link to={`${match.url}/A-Good-Chair`}>
-            A good chair 
-          </Link>
-        </li>
-      </ul>
-      <Switch>
-        <Route path={`${match.path}/:productId`}>
-          <Product />
-        </Route>
-      </Switch>
-    </div>
-  );
-}
-
-//here are your products
-function Product() {
-  let { productId } = useParams();
-
-  return (
-    <div>
-      <h3>Hey you chose {productId}!</h3>
-      <p>I'll work on getting that in your cart</p>
-      <p>You'll need {productId} ASAP</p>
-    </div>
-  )
-}
+<LoadingButton
+        color="secondary"
+        onClick={handleClick}
+        loading={loading}
+        loadingPosition="start"
+        startIcon={<SaveIcon />}
+        variant="contained"
+      >
+        Save
+      </LoadingButton>
 */

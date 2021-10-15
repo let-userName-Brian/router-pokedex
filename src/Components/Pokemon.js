@@ -36,9 +36,7 @@ export default function Pokemon(){
 
     // handleClick(e){
     //     e.preventDefault();
-
     //     let clickedOnPoke = {};
-
     //     return 
     // }
     

@@ -2,17 +2,20 @@ import './App.css';
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import Pokemon from './Components/Pokemon'
 import Favorites from './Components/Favorites';
+import { FavoritesContextProvider } from "./FavoritesContext";
 
 
 export default function App() {
   return (
     <BrowserRouter>
+    <FavoritesContextProvider>
       <div className="Switches">
         <Switch>
           <Route path="/favorites" exact component={Favorites}/>
           <Route path="/" component={Pokemon} />
         </Switch>
       </div>
+      </FavoritesContextProvider>
     </BrowserRouter>
   );
 }
@@ -34,5 +37,4 @@ Mandatory Users Stories
 [] Paginate the initial list to allow for browsing a larger selection of Pokemon
 [] Search for a Pokemon via its name, retain ability to view details and add it to favorites
 [] Use Material UI to style cards.
-
 */ 
