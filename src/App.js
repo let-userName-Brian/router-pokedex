@@ -1,14 +1,23 @@
 import './App.css';
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom"
 import Pokemon from './Components/Pokemon'
-import { BrowserRouter, Switch, Route } from "react-router-dom"
+import Favorites from './Components/Favorites';
 
 
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="App">
+      <nav>
+      <Link to="/favorites">Favorites</Link>
+      </nav>
+
+
+      <div className="Swithes">
         <Switch>
           <Route path="/" exact component={Pokemon} />
+        </Switch>
+        <Switch>
+          <Route path="/favorites" exact component={Favorites}/>
         </Switch>
       </div>
     </BrowserRouter>
