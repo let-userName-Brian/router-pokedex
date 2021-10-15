@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { FavoritesContextProvider } from './Components/FavoritesContext';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <FavoritesContextProvider>
     <App />
-  </React.StrictMode>,
+  </FavoritesContextProvider>,
   document.getElementById('root')
 );
 

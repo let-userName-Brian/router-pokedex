@@ -3,6 +3,7 @@ import Favorites from "./Favorites";
 import { FavorietesContext } from "./FavoritesContext";
 
 
+
 export default function IndividualPokemon({details}) {
 
     let { pokemonName } = useParams();
@@ -34,19 +35,17 @@ export default function IndividualPokemon({details}) {
             newPokeFact.img = details[i].sprites.front_default;
         }
     }
-    // updateFacts((current) => {return {...current, newPokeFact}});
 
-    //NICE!
 
     return (
-        <div>
+        <div className="details">
             <h2>I choose you {pokemonName}!</h2>
             <img src={newPokeFact.img} />
             <p>Height: {newPokeFact.height} inches</p>
             <p>Weight: {newPokeFact.weight} lbs</p>
             <p>Type: {newPokeFact.types}</p>
             <p>All my moves are: {newPokeFact.moves}</p>
-            <Link exact to="/favorites">Add to Favorites</Link>
+            <Link to="/favorites">Add to favorites</Link> 
             <Route path='/favorites'> 
                 <Favorites favePokemon={pokemonName} pokeImg={newPokeFact.img}/>
             </Route>

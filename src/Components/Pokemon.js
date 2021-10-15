@@ -43,7 +43,7 @@ export default function Pokemon(){
     // let result;
     // if(detailState) {result = <IndividualPokemon details={detailState} />}
     return(
-        <div>
+        <div className="pokemon-list">
             <nav>
                 <Link to="/favorites">Favorites</Link>
             </nav>
