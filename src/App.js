@@ -7,11 +7,6 @@ import Favorites from './Components/Favorites';
 export default function App() {
   return (
     <BrowserRouter>
-      <nav>
-      <Link to="/favorites">Favorites</Link>
-      </nav>
-
-
       <div className="Swithes">
         <Switch>
           <Route path="/" exact component={Pokemon} />

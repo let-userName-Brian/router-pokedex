@@ -21,6 +21,9 @@ export default function Pokemon(){
 
     return (
         <div>
+            <nav>
+                <Link to="/favorites">Favorites</Link>
+            </nav>
             {pokemonName.map(results => (
                 <h1>
                     <Link key={results.name} to={`/characters/${results.name}`}>{results.name}</Link>
